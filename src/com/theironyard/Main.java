@@ -12,7 +12,18 @@ public class Main {
     try {
         Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Krista\\IdeaProjects\\testdb\\testjava.db");
         Statement statement = conn.createStatement();
-        statement.execute("CREATE TABLE contacts(name TEXT, phone INTEGER, email TEXT)");
+        statement.execute("CREATE TABLE IF NOT EXISTS contacts" +
+                " (name TEXT, phone INTEGER, email TEXT)");
+//        statement.execute("INSERT INTO contacts (name, phone, email)" +
+//                "VALUES('Joe', 9834736, 'joe@anywhere.com')");
+//
+//        statement.execute("INSERT INTO contacts (name, phone, email)" +
+//                "VALUES('Jane', 2849573, 'jane@somewhere.com')");
+//
+//        statement.execute("INSERT INTO contacts (name, phone, email)" +
+//                "VALUES('Fido', 2948262, 'dog@anywhere.com')");
+        statement.execute("UPDATE contacts SET phone=5555555 WHERE name='Jane'");
+
 
         statement.close();
         conn.close();
